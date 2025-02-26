@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop",
+    "description": "Powerful gaming laptop",
+    "price":10,
+    "quantity": 10
+  },
+  {
+    "id": 2,
+    "name": "Smartphone",
+    "description": "Latest Android phone",
+    "price":15,
+    "quantity": 0
+  },
+  {
+    "id": 3,
+    "name": "Headphones",
+    "description": "Noise-cancelling headphones",
+    "price":20,
+    "quantity": 15
+  },
+  {
+    "id": 4,
+    "name": "Smartwatch",
+    "description": "Track fitness and notifications",
+    "price":25,
+    "quantity": 6
+  },
+  {
+    "id": 5,
+    "name": "Gaming Mouse",
+    "description": "High precision gaming mouse",
+    "price":30,
+    "quantity": 12
+  },
+  {
+    "id": 6,
+    "name": "Mechanical Keyboard",
+    "description": "RGB mechanical keyboard",
+    "price":35,
+    "quantity": 12
+  },
+  {
+    "id": 7,
+    "name": "Tablet",
+    "description": "Portable touchscreen tablet",
+    "price":40,
+    "quantity": 5
+  },
+  {
+    "id": 8,
+    "name": "Monitor",
+    "description": "27-inch 4K UHD display",
+    "price":45,
+    "quantity": 8
+  },
+  {
+    "id": 9,
+    "name": "Printer",
+    "description": "Wireless all-in-one printer",
+    "price":50,
+    "quantity": 14
+  }
+]
