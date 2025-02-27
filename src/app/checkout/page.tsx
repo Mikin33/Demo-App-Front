@@ -24,9 +24,10 @@ export default function Checkout() {
     const cart = useSelector((state: RootState) => state.cart.items);
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
-    const token = localStorage.getItem("token");
 
     useEffect(() => {
+
+        const token = localStorage.getItem("token");
         const fetchProducts = async () => {
             try {
                 const res = await fetch(`${API_BASE_URL}/products`, {
@@ -59,6 +60,7 @@ export default function Checkout() {
     const totalItems = cartItems.reduce((sum, product) => sum + product.quantity, 0);
 
     const handlePlaceOrder = async () => {
+        const token = localStorage.getItem("token");
         try {
             
             if (!token) {
