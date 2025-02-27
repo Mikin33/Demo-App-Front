@@ -8,6 +8,8 @@ interface LoginForm {
     password: string;
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; // Base URL from env
+
 export default function Login() {
     const router = useRouter();
     const [formData, setFormData] = useState<LoginForm>({ email: "", password: "" });
@@ -44,7 +46,7 @@ export default function Login() {
         if (!validateForm()) return;
 
         try {
-            const response = await fetch("http://localhost:4000/api/auth/login", {
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

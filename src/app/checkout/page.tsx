@@ -16,19 +16,28 @@ interface Product {
     price: number;
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; // Base URL from env
+
 export default function Checkout() {
     const dispatch = useDispatch();
     const router = useRouter();
     const cart = useSelector((state: RootState) => state.cart.items);
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await fetch("/api/products");
+                const res = await fetch(`${API_BASE_URL}/products`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
                 const data = await res.json();
-                setProducts(data);
+                setProducts(data.products);
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
@@ -51,12 +60,12 @@ export default function Checkout() {
 
     const handlePlaceOrder = async () => {
         try {
-            const token = localStorage.getItem("token");
+            
             if (!token) {
                 throw new Error("Authorization token not found");
             }
 
-            const response = await fetch("http://localhost:4000/update-products-quantity", {
+            const response = await fetch(`${API_BASE_URL}/update-products-quantity`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

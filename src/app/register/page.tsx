@@ -12,6 +12,8 @@ interface FormData {
     confirmPassword: string;
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; // Base URL from env
+
 export default function Register() {
     const router = useRouter();
 
@@ -49,7 +51,7 @@ export default function Register() {
         e.preventDefault();
         if (validate()) {
             try {
-                const res = await fetch("http://localhost:4000/api/auth/register", {
+                const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

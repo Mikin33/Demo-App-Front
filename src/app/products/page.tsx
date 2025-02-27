@@ -17,7 +17,8 @@ interface Product {
     quantity: number;
 }
 
-const socket = io("http://localhost:4000"); // Connect to your backend
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; // Base URL from env
+const socket = io(`${API_BASE_URL}`); // Connect to your backend
 
 export default function ProductListing() {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function ProductListing() {
         const fetchProducts = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const res = await fetch("http://localhost:4000/products", {
+                const res = await fetch(`${API_BASE_URL}/products`, {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,

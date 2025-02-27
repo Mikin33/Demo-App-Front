@@ -15,6 +15,9 @@ interface Product {
     quantity: number;
 }
 
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; // Base URL from env
+
 export default function Checkout() {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -26,9 +29,16 @@ export default function Checkout() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await fetch("/api/products");
+                const token = localStorage.getItem("token");
+                const res = await fetch(`${API_BASE_URL}/products`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
                 const data = await res.json();
-                setProducts(data);
+                setProducts(data.products);
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
